@@ -1,0 +1,24 @@
+#!/bin/sh
+FORT=gfortran
+FFLAG="-fcheck=all -g"
+MODULES="../modules/mod_numeric.f90 ../modules/mod_utilities.f90 ../modules/mod_matrix_arithmetic.f90"
+echo TESTING_MODULES
+for FILENAME in ../module_tests/*.f90; do
+  NAME=$(basename "$FILENAME")
+  FNAME="${NAME%.*}"
+  $FORT $FFLAG $MODULES $FILENAME -o $FNAME
+  ./$FNAME
+  rm $FNAME
+done
+rm *mod
+echo TESTING_MAIN_FUNCTIONS_AND_SUBROUTINES
+$FORT $FFLAG $MODULES ../activate.f90 ../main_tests/activate_test.f90 -o activate_test
+./activate_test
+rm activate_test
+$FORT $FFLAG $MODULES ../activate_derivative.f90 ../main_tests/activate_derivative_test.f90 -o activate_derivative_test
+./activate_derivative_test
+rm activate_derivative_test
+$FORT $FFLAG $MODULES ../activate.f90 ../feedforward.f90 ../main_tests/feedforward_test.f90 -o feedforward_test
+./feedforward_test
+rm feedforward_test
+rm *mod
