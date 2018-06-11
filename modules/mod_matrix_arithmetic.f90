@@ -89,21 +89,12 @@ contains
   end subroutine vertical_concatenation
 
   subroutine output_to_class(a, b)
+  intrinsic shape, maxloc
   real(kind=real_kind), intent(in)   :: a(:, :)
   real(kind=real_kind), intent(out)  :: b(:)
   integer(kind=int_kind) :: i, j, s, n(2)
   ! Implementation
-    n = shape(a)
-    do i = 1, n(1)
-      s = 1
-      do j = 1, n(2)
-       if (a(i,j) .eq. 1) then
-         exit
-       end if
-       s = s + 1
-      end do
-      b(i) = s
-    end do
+    b = maxloc(a, 2)
   end subroutine output_to_class
   
   subroutine class_to_output(a, b)

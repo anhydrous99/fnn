@@ -7,8 +7,8 @@ use mod_utilities, only: matrix_print
 implicit none
 ! Declaration Statements
 external feedforward
-real(kind=real_kind) :: inputs(3, 3), weights(3, 3), bias(3, 3)
-real(kind=real_kind) :: net(3, 6), output(3, 6)
+real(kind=real_kind) :: inputs(3, 3), weights(6, 3), bias(3, 3)
+real(kind=real_kind) :: net(3, 3), output(3, 3)
 ! Implementation
   write(*,*) "FEEDFORWARD_TEST"
   write(*,*)
@@ -22,7 +22,7 @@ real(kind=real_kind) :: net(3, 6), output(3, 6)
   write(*,*) " bias = "
   call matrix_print(bias)
   write(*,*) " Feedforward outputs: "
-  call feedforward(inputs, weights, bias, net, output, (/3, 3/), (/3, 3/), (/3, 3/))
+  call feedforward(inputs, weights, bias, net, output, (/3, 3/), (/6, 3/), (/3, 3/))
   write(*,*) " net = "
   call matrix_print(net)
   write(*,*) " output = "

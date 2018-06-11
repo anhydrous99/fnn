@@ -14,11 +14,11 @@ integer(kind=int_kind), intent(in) :: inputs_shape(2), weights_shape(2), bias_sh
 real(kind=real_kind), intent(in)   :: inputs(inputs_shape(1), inputs_shape(2)),    &
                                       weights(weights_shape(1), weights_shape(2)), &
                                       bias(bias_shape(1), bias_shape(2))
-real(kind=real_kind), intent(out)  :: net(weights_shape(1), inputs_shape(2) + bias_shape(2)), &
-                                      output(weights_shape(1), inputs_shape(2) + bias_shape(2))
-real(kind=real_kind) :: tmp(weights_shape(1), inputs_shape(2) + bias_shape(2))
+real(kind=real_kind), intent(out)  :: net(inputs_shape(1), weights_shape(2)), &
+                                      output(inputs_shape(1), weights_shape(2))
+real(kind=real_kind) :: tmp(inputs_shape(1), inputs_shape(2) + bias_shape(2))
 ! Implementation
   call horizontal_concatenation(inputs, bias, tmp)
-  call matrix_product(weights, tmp, net)
-  call activate(net, output, (/ weights_shape(1), inputs_shape(2) + bias_shape(2) /))
+  call matrix_product(tmp, weights, net)
+  call activate(net, output, (/ inputs_shape(1), weights_shape(2) /))
 end subroutine feedforward

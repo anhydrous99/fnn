@@ -21,4 +21,10 @@ rm activate_derivative_test
 $FORT $FFLAG $MODULES ../activate.f90 ../feedforward.f90 ../main_tests/feedforward_test.f90 -o feedforward_test
 ./feedforward_test
 rm feedforward_test
+$FORT $FFLAG $MODULES ../activate.f90 ../feedforward.f90 ../eval_network.f90 ../main_tests/eval_network_test.f90 -o eval_network_test
+./eval_network_test
+rm eval_network_test
+$FORT $FFLAG $MODULES ../activate.f90 ../feedforward.f90 ../update_backpropagation.f90 ../main_tests/update_backpropagation_test.f90 -o update_backpropagation_test
+./update_backpropagation_test
+rm update_backpropagation_test
 rm *mod
