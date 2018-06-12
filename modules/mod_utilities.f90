@@ -1,10 +1,16 @@
 module mod_utilities
+!
 ! Using statement
+!
 use mod_numeric, only: int_kind, & ! kind for Integer vars
                        real_kind   ! kind for Real vars
+!
 ! Implicit Statement
+!
 implicit none
+!
 ! Public Statement
+!
 public
 contains
   subroutine matrix_print(a)

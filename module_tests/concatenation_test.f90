@@ -1,13 +1,19 @@
 program concatenation_test
+!
 ! Use Statement
+!
 use mod_numeric, only: int_kind, & ! kind for Integer vars
                        real_kind   ! kind for Real vars
 use mod_matrix_arithmetic, only: horizontal_concatenation, &
                                  vertical_concatenation
 use mod_utilities, only: matrix_print
+!
 ! Implicit Statement
+!
 implicit none
+!
 ! Declaration Statement
+!
 real(kind=real_kind), parameter :: a(3, 5) = reshape((/ 17, 24,  1,  8, 15, &
                                                         23,  5,  7, 14, 16, &
                                                          4,  6, 13, 20, 22 /), (/3, 5/), order=(/2, 1/))

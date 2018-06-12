@@ -1,11 +1,14 @@
 subroutine feedforward(inputs, weights, bias, net, output, &
                        inputs_shape, weights_shape, bias_shape)
 ! Using statement
+!
 use mod_numeric, only: int_kind, & ! kind for Interger vars
                        real_kind   ! kind for Real vars
 use mod_matrix_arithmetic, only: matrix_product, &
                                  horizontal_concatenation
+!
 ! Implicit Statement
+!
 implicit none
 ! External Subroutine
 external activate

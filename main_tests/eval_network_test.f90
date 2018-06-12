@@ -1,12 +1,18 @@
 program eval_network_test
+!
 ! Use Statements
+!
 use mod_numeric, only: int_kind, & ! kind for int vars
                        real_kind   ! kind for real vars
 use mod_matrix_arithmetic, only: fill_matrix_rand
 use mod_utilities, only: matrix_print
+!
 ! Implicit Statement
+!
 implicit none
+!
 ! Var Decleration
+!
 external eval_network
 real(kind=real_kind) :: regression_error, classification_error
 real(kind=real_kind) :: input(3,3), weight(6,3), bias(3,3), &
@@ -14,7 +20,9 @@ real(kind=real_kind) :: input(3,3), weight(6,3), bias(3,3), &
                                                        1, 0, 0, &
                                                        1, 0, 0/), (/3,3/), order=(/2,1/)), &
                         target_class(3) = (/1, 1, 1/)
+!
 ! Implementation
+!
   write(*,*) "EVAL_NETWORK_TEST"
   call fill_matrix_rand(input, real(1))
   call fill_matrix_rand(weight, real(1))

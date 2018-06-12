@@ -1,14 +1,22 @@
 program fill_matrix_rand_test
+!
 ! Use Statements
+!
 use mod_numeric, only: int_kind, & ! kind for Integer vars
                        real_kind   ! kind for Real vars
 use mod_matrix_arithmetic, only: fill_matrix_rand
 use mod_utilities, only: matrix_print
+!
 ! Implicit Statements
+!
 implicit none
+!
 ! Declaration Statements
+!
 real(kind=real_kind) :: a(2,3), b(3,3), c(3,2), d(4,4), e(5,5), f(6,6)
+!
 ! Impementation
+!
   write(*,*) 'FILL_MATRIX_RAND TEST'
   write(*,*) ' R^(2x3) a = '
   call fill_matrix_rand(a, 100E0)

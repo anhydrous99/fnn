@@ -1,15 +1,23 @@
 program feedforward_test
+!
 ! Use Statements
+!
 use mod_numeric, only: real_kind   ! kind for Real vars
 use mod_matrix_arithmetic, only: fill_matrix_rand
 use mod_utilities, only: matrix_print
+!
 ! Implicit Statements
+!
 implicit none
+!
 ! Declaration Statements
+!
 external feedforward
 real(kind=real_kind) :: inputs(3, 3), weights(6, 3), bias(3, 3)
 real(kind=real_kind) :: net(3, 3), output(3, 3)
+!
 ! Implementation
+!
   write(*,*) "FEEDFORWARD_TEST"
   write(*,*)
   call fill_matrix_rand(inputs, real(1))

@@ -1,12 +1,18 @@
 program kronecker_product_test
+!
 ! Using Statement
+!
 use mod_numeric, only: int_kind, & ! kind for Integer vars
                        real_kind   ! kind for Real vars
 use mod_matrix_arithmetic, only: kronecker_product
 use mod_utilities, only: matrix_print
+!
 ! Implicit Statement
+!
 implicit none
+!
 ! Declaration Statement
+!
 real(kind=real_kind), parameter :: a(2, 2) = reshape( (/1, 2, 3, 4/), (/2, 2/), order=(/2, 1/)) 
 real(kind=real_kind), parameter :: b(2, 2) = reshape( (/0, 5, 6, 7/), (/2, 2/), order=(/2, 1/)) 
 real(kind=real_kind), parameter :: c(2, 2) = reshape( (/5, 7, 2, 6/), (/2, 2/), order=(/2, 1/))

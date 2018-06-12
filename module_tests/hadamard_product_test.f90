@@ -1,17 +1,25 @@
 program hadamard_product_test
+!
 ! Use Statements
+!
 use mod_numeric, only: int_kind, & ! kind for Integer vars
                        real_kind   ! kind for Real vars
 use mod_matrix_arithmetic, only: hadamard_product
 use mod_utilities, only: matrix_print
+!
 ! Implicit Statement
+!
 implicit none
+!
 ! Declaration Statements
+!
 real(kind=real_kind), parameter :: a(2, 2) = reshape( (/1, 2, 3, 4/), (/2, 2/), order=(/2, 1/))
 real(kind=real_kind), parameter :: b(2, 2) = reshape( (/0, 5, 6, 7/), (/2, 2/), order=(/2, 1/))
 real(kind=real_kind), parameter :: c(2, 2) = reshape( (/5, 7, 2, 6/), (/2, 2/), order=(/2, 1/))
 real(kind=real_kind) :: tmp(2, 2), tmp1(2, 2), tmp2(2, 2)
+!
 ! Implementation
+!
   write(*,*) 'HADAMARD PRODUCT TEST'
   write(*,*)
   write(*,*) 'a = '
