@@ -11,7 +11,7 @@ use mod_utilities, only: matrix_print
 !
 implicit none
 !
-! Var Decleretion
+! Var Decleration
 !
 external update_backpropagation
 real(kind=real_kind) :: input(3,3), bias(3,3), weights(6,3)

@@ -19,7 +19,7 @@ contains
   ! Implementation
     dimen = shape(a) 
     do i = 1, dimen(1)
-      write(*, *) (a(i, j), j = 1, dimen(2))
+      write(*,*) (a(i, j), j = 1, dimen(2))
     end do
   end subroutine matrix_print
 end module mod_utilities
