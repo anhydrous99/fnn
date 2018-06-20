@@ -14,24 +14,27 @@ implicit none
 ! Var Decleration
 !
 external update_backpropagation
-real(kind=real_kind) :: input(3,3), bias(3,3), weights(6,3)
+real(kind=real_kind) :: input(3,3), bias(3,3), target_output(3,3), weights(6,3)
 !
 ! Implementation
 !
   call fill_matrix_rand(input, real(1))
   call fill_matrix_rand(bias, real(1))
+  call fill_matrix_rand(target_output, real(1))
   call fill_matrix_rand(weights, real(1))
   write(*,*) "UPDATE_BACKPROPAGATION_TEST"
   write(*,*) " input = "
   call matrix_print(input)
   write(*,*) " bias = "
   call matrix_print(bias)
+  write(*,*) " target_output = "
+  call matrix_print(target_output)
   write(*,*)
   write(*,*) " weights = "
   call matrix_print(weights)
   write(*,*)
   write(*,*) " updated weights = "
-  call update_backpropagation(input, weights, 0.1, bias, (/3,3/), (/6,3/), (/3,3/))
+  call update_backpropagation(input, weights, target_output, 0.1, bias, (/3,3/), (/6,3/), (/3,3/))
   call matrix_print(weights)
   write(*,*)
 end program update_backpropagation_test

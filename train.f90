@@ -22,14 +22,14 @@ real(kind=real_kind), intent(in)   :: training_set(ntrainsamples, ninputs + ncla
 ! Parameters
 real(kind=real_kind), parameter   :: max_weight = 0.5,    &
                                      learning_rate = 0.1, &
-                                     validation_threshold = 0.1
-integer(kind=int_kind), parameter :: max_iterations = 1000
+                                     validation_threshold = 0.06
+integer(kind=int_kind), parameter :: max_epoch = 1000
 ! Tmp vars
 integer(kind=int_kind) :: i
 real(kind=real_kind)   :: training_bias(ntrainsamples,1),         &
                           validation_bias(nvalidationsamples, 1), &
                           test_bias(ntestsamples,1)
-real(kind=real_kind), dimension(max_iterations) :: training_regression_error, training_classification_error,     &
+real(kind=real_kind), dimension(max_epoch) :: training_regression_error, training_classification_error,     &
                                                    validation_regression_error, validation_classification_error, &
                                                    test_regression_error, test_classification_error
 !
@@ -41,11 +41,11 @@ real(kind=real_kind), dimension(max_iterations) :: training_regression_error, tr
   test_bias = 1
   ! Fill weights matrix with random numbers
   call fill_matrix_rand(weights, max_weight)
-  do i = 1, max_iterations
+  do i = 1, max_epoch
     ! Update Weights
     call update_backpropagation(training_set(1:ntrainsamples, 1:ninputs), weights, &
-            learning_rate, training_bias, (/ntrainsamples, ninputs/),                &
-            (/ninputs + 1, nclasses/), (/ntrainsamples, 1/))
+            training_set(1:ntrainsamples, ninputs+1:ninputs+nclasses), learning_rate, &
+            training_bias, (/ntrainsamples, ninputs/), (/ninputs+1, nclasses/), (/ntrainsamples, 1/))
     ! Evaluate Network against training samples
     call eval_network(training_set(1:ntrainsamples, 1:ninputs), weights, training_bias,              &
                       training_set(1:ntrainsamples, ninputs+1:ninputs+nclasses),                     &
@@ -64,9 +64,9 @@ real(kind=real_kind), dimension(max_iterations) :: training_regression_error, tr
                       test_set(1:ntestsamples, ninputs+nclasses+1:ninputs+nclasses+1),               &
                       test_regression_error(i), test_classification_error(i),                        &
                       (/ntestsamples, ninputs/), (/ninputs+1, nclasses/), (/ntestsamples,1/))
-    if (mod(i, 10) == 0) then
+    if (mod(i, 1) == 0) then
       write(*,*)
-      write(*,*) " Iteration: ", i
+      write(*,*) " Epoch: ", i
       write(*,*) " Regression Training: ", training_regression_error(i),            &
                  " Classification Training: ", training_classification_error(i)
       write(*,*) " Regression Validation: ", validation_regression_error(i),        &

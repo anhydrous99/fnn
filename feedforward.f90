@@ -6,6 +6,7 @@ use mod_numeric, only: int_kind, & ! kind for Interger vars
                        real_kind   ! kind for Real vars
 use mod_matrix_arithmetic, only: matrix_product, &
                                  horizontal_concatenation
+use mod_utilities, only: matrix_print
 !
 ! Implicit Statement
 !

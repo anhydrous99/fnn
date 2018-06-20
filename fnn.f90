@@ -18,8 +18,7 @@ integer(kind=int_kind), parameter :: ninput = 4,        &
                                      nclasses = 3,      &
                                      ntrainings = 75,   &
                                      nvalidations = 37, &
-                                     ntests = 38,       &
-                                     max_iterations = 500
+                                     ntests = 38
 real(kind=real_kind) :: training_set(ntrainings, ninput + nclasses + 1), &
                         tmp1(ntrainings)
 real(kind=real_kind) :: validation_set(nvalidations, ninput + nclasses + 1), &
