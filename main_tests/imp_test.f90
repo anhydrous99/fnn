@@ -18,7 +18,7 @@ real(kind=real_kind) :: mat(38, 7)
 !
   write(*,*)
   write(*,*) "IMP_TEST"
-  call imp("../../iris_data_files/iris_test.dat", mat, (/38, 7/))
+  call imp("../iris_data_files/iris_test.dat", mat, (/38, 7/))
   call matrix_print(mat)
   write(*,*)
 end program imp_test

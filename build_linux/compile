@@ -30,4 +30,8 @@ rm update_backpropagation_test
 $FORT $FFLAG $MODULES ../imp.f90 ../main_tests/imp_test.f90 -o imp_test
 ./imp_test
 rm imp_test
+
+$FORT $FFLAG $MODULES ../activate.f90 ../activate_derivative.f90 ../feedforward.f90 ../update_backpropagation.f90 ../imp.f90 ../eval_network.f90 ../train.f90 ../fnn.f90 -o fnn
+./fnn
+
 rm *mod

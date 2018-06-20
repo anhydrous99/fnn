@@ -1,5 +1,5 @@
-subroutine train(training_set, validation_set, test_set, weights, ntrainsamples, nvalidationsamples, ntestsamples, &
-                 ninputs, nclasses, regerror, claserror)
+subroutine train(training_set, validation_set, test_set, weights, ntrainsamples, nvalidationsamples, &
+                ntestsamples, ninputs, nclasses, regerror, claserror)
 !
 ! Use Statement
 !
@@ -37,14 +37,15 @@ real(kind=real_kind), dimension(max_iterations) :: training_regression_error, tr
 !
   ! Fill bias with ones
   training_bias = 1
-  balidation_bias = 1
+  validation_bias = 1
   test_bias = 1
   ! Fill weights matrix with random numbers
   call fill_matrix_rand(weights, max_weight)
   do i = 1, max_iterations
     ! Update Weights
-    call update_backpropagation(training_set(1:ntrainsamples, 1:ninputs), weights, learning_rate, training_bias, &
-            (/ntrainamples, ninputs), (/ninputs + 1, nclasses/), (/ntrainsamples, 1/))
+    call update_backpropagation(training_set(1:ntrainsamples, 1:ninputs), weights, &
+            learning_rate, training_bias, (/ntrainsamples, ninputs/),                &
+            (/ninputs + 1, nclasses/), (/ntrainsamples, 1/))
     ! Evaluate Network against training samples
     call eval_network(training_set(1:ntrainsamples, 1:ninputs), weights, training_bias,              &
                       training_set(1:ntrainsamples, ninputs+1:ninputs+nclasses),                     &
