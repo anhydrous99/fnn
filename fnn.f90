@@ -18,7 +18,11 @@ integer(kind=int_kind), parameter :: ninput = 4,        &
                                      nclasses = 3,      &
                                      ntrainings = 75,   &
                                      nvalidations = 37, &
-                                     ntests = 38
+                                     ntests = 38,       &
+                                     max_epoch = 1000
+real(kind=real_kind), parameter :: max_weight = 0.5, &
+                                   learning_rate = 0.1, &
+                                   validation_threshold = 0.06 
 real(kind=real_kind) :: training_set(ntrainings, ninput + nclasses + 1), &
                         tmp1(ntrainings)
 real(kind=real_kind) :: validation_set(nvalidations, ninput + nclasses + 1), &
@@ -49,5 +53,6 @@ real(kind=real_kind) :: regerror(3), claserror(3)
   test_set(:, ninput+nclasses+1:ninput+nclasses+1) = reshape(tmp3, (/ntests, 1/))
 ! Train
   call train(training_set, validation_set, test_set, weights, ntrainings, &
-          nvalidations, ntests, ninput, nclasses, regerror, claserror)
+          nvalidations, ntests, ninput, nclasses, regerror, claserror, &
+          max_weight, learning_rate, validation_threshold, max_epoch)
 end program fnn

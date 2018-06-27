@@ -1,5 +1,6 @@
 subroutine train(training_set, validation_set, test_set, weights, ntrainsamples, nvalidationsamples, &
-                ntestsamples, ninputs, nclasses, regerror, claserror)
+                ntestsamples, ninputs, nclasses, regerror, claserror, max_weight, learning_rate, &
+                validation_threshold, max_epoch)
 !
 ! Use Statement
 !
@@ -20,10 +21,10 @@ real(kind=real_kind), intent(in)   :: training_set(ntrainsamples, ninputs + ncla
                                       validation_set(nvalidationsamples, ninputs + nclasses + 1), &
                                       test_set(ntestsamples, ninputs + nclasses + 1)
 ! Parameters
-real(kind=real_kind), parameter   :: max_weight = 0.5,    &
-                                     learning_rate = 0.1, &
-                                     validation_threshold = 0.06
-integer(kind=int_kind), parameter :: max_epoch = 1000
+real(kind=real_kind), intent(in)   :: max_weight,    &
+                                      learning_rate, &
+                                      validation_threshold
+integer(kind=int_kind), intent(in) :: max_epoch
 ! Tmp vars
 integer(kind=int_kind) :: i
 real(kind=real_kind)   :: training_bias(ntrainsamples,1),         &
